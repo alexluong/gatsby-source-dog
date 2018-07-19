@@ -61,7 +61,13 @@ exports.sourceNodes = async ({ actions, createNodeId }, options) => {
   }
 
   const breedResponse = await processBreedOption(options.breed)
-  console.log(breedResponse)
+  Object.entries(breedResponse).forEach(([name, images]) => {
+    images.forEach(imgURL => {
+      const imgObj = createImageObjectFromURL(imgURL)
+      const nodeData = turnBreedImageIntoGatsbyNode(imgObj)
+      createNode(nodeData)
+    })
+  })
   return
 }
 
@@ -76,6 +82,7 @@ function createImageObjectFromURL(url) {
       lastIndexOfSlash
     )
     .split("-")
+    .reverse()
     .reduce((a, v) => `${a}${v.replace(/^\w/, c => c.toUpperCase())} `, "")
     .trim()
 

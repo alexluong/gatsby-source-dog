@@ -81,6 +81,7 @@ exports.processBreedOption = async option => {
       }
     })
 
+    // Resolve all promises and turn into final object
     return Promise.all(promiseArr).then(results =>
       results.reduce((a, v) => {
         if (a[v.name]) {
@@ -92,7 +93,7 @@ exports.processBreedOption = async option => {
       }, {})
     )
   } else {
-    throw new Error("option.breed needs to be either a string or array")
+    throw new Error("option.breed must be a string or an array")
   }
 
   return { images }
@@ -100,7 +101,13 @@ exports.processBreedOption = async option => {
 
 function fetchImageByBreed({ name, random = false }) {
   return new Promise(async (resolve, reject) => {
-    const breed = name.toLowerCase()
+    const breed = name.includes(" ")
+      ? name
+          .split(" ")
+          .reverse()
+          .reduce((a, v) => `${a}-${v}`)
+          .toLowerCase()
+      : name.toLowerCase()
 
     const returnObj = {}
     returnObj.name = name
@@ -111,7 +118,6 @@ function fetchImageByBreed({ name, random = false }) {
       if (!random) {
         response = await axios.get(`${URL}/breed/${breed}/images`)
       } else {
-        // !FIXME: cannot add /number to random images by breed
         response = await axios.get(`${URL}/breed/${breed}/images/random`)
         // return axios.get(`${URL}/breed/${breed}/images/random`/${number})
       }
