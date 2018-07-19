@@ -56,7 +56,7 @@ In your `gatsby-config.js`, add the plugin and options:
 
 ## How to Query
 
-**To query all dog images:**
+**To query all images:**
 
 ```
   allDogImage {
@@ -73,7 +73,7 @@ In your `gatsby-config.js`, add the plugin and options:
   }
 ```
 
-**To query based on dog breed:**
+**To query all images based on dog breed:**
 
 ```
   allDogImage(filter: { breed: { eq:  "Border Collie" } }) {
@@ -86,6 +86,19 @@ In your `gatsby-config.js`, add the plugin and options:
           ...
         }
       }
+    }
+  }
+```
+
+**To query one image based on id:**
+
+```
+  dogImage(id: { eq: "cb75eb4f-0bf4-56ca-ba4a-680b5678526d" }) {
+    id
+    breed
+    url
+    internal {
+      ...
     }
   }
 ```
