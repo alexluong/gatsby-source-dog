@@ -9,7 +9,7 @@ exports.processBreedsOption = async option => {
 
   let fetched = false
   let list = null
-  let image = null
+  let images = null
 
   // Fetch list of dog breeds
   if (option.list) {
@@ -37,34 +37,13 @@ exports.processBreedsOption = async option => {
         `${URL}/breeds/image/random/${number}`
       )
 
-      image = status === 404 ? [] : imageData.message
+      images = status === 404 ? [] : imageData.message
     } catch (error) {
       throw new Error("Couldn't fetch random dog images.")
     }
   }
 
-  return { fetched, list, image }
-}
-
-async function fetchImageByBreed(breed, random = false, number = 1) {
-  try {
-    let response
-
-    if (!random) {
-      response = await axios.get(`${URL}/breed/${breed}/images`)
-    } else {
-      // !FIXME: cannot add /number to random images by breed
-      response = await axios.get(`${URL}/breed/${breed}/images/random`)
-    }
-
-    const { status, data } = response
-
-    return status === 404 ? [] : data.message
-  } catch (error) {
-    throw new Error(
-      `Couldn't fetch "${breed}" images. Please check to see if your dog breed is available: https://dog.ceo/dog-api/documentation/`
-    )
-  }
+  return { fetched, list, images }
 }
 
 exports.processBreedOption = async option => {
@@ -72,7 +51,84 @@ exports.processBreedOption = async option => {
     return { fetched: false }
   }
 
-  if (typeof breed === "string") {
-    const images = await fetchImageByBreed(breed.toLowerCase())
+  let images = {}
+
+  if (typeof option === "string") {
+    // option = name of a breed
+    const { images: breedImages } = await fetchImageByBreed({ name: option })
+    images[option] = breedImages
+  } else if (Array.isArray(option)) {
+    /**
+     * Has to do the {...number, ...breed} thing
+     * because dog API doesn't allow fetching multiple random images
+     * from a breed
+     * -> We're adding number * Promise into promiseArr
+     */
+    const promiseArr = []
+    option.forEach(breed => {
+      if (typeof breed === "string") {
+        promiseArr.push(fetchImageByBreed({ name: breed }))
+      } else {
+        if (!breed.random) {
+          promiseArr.push(fetchImageByBreed({ name: breed.name }))
+        } else {
+          Array.from(Array(breed.number), () => {
+            promiseArr.push(
+              fetchImageByBreed({ name: breed.name, random: true })
+            )
+          })
+        }
+      }
+    })
+
+    return Promise.all(promiseArr).then(results =>
+      results.reduce((a, v) => {
+        if (a[v.name]) {
+          a[v.name] = [...a[v.name], ...v.images]
+        } else {
+          a[v.name] = v.images
+        }
+        return a
+      }, {})
+    )
+  } else {
+    throw new Error("option.breed needs to be either a string or array")
   }
+
+  return { images }
+}
+
+function fetchImageByBreed({ name, random = false }) {
+  return new Promise(async (resolve, reject) => {
+    const breed = name.toLowerCase()
+
+    const returnObj = {}
+    returnObj.name = name
+
+    let response
+
+    try {
+      if (!random) {
+        response = await axios.get(`${URL}/breed/${breed}/images`)
+      } else {
+        // !FIXME: cannot add /number to random images by breed
+        response = await axios.get(`${URL}/breed/${breed}/images/random`)
+        // return axios.get(`${URL}/breed/${breed}/images/random`/${number})
+      }
+    } catch (error) {
+      reject(new Error(`Couldn't fetch images of breed: ${name}`))
+    }
+
+    if (response.status === 404) {
+      returnObj.images = []
+    } else {
+      if (typeof response.data.message === "string") {
+        returnObj.images = [response.data.message]
+      } else {
+        returnObj.images = response.data.message
+      }
+    }
+
+    resolve(returnObj)
+  })
 }

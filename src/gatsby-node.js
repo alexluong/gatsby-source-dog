@@ -12,7 +12,8 @@ exports.sourceNodes = async ({ actions, createNodeId }, options) => {
       .update(nodeContent)
       .digest("hex")
 
-    const nodeData = Object.assign({}, image, {
+    const nodeData = {
+      ...image,
       id: nodeId,
       parent: null,
       children: [],
@@ -21,7 +22,7 @@ exports.sourceNodes = async ({ actions, createNodeId }, options) => {
         content: nodeContent,
         contentDigest: nodeContentDigest,
       },
-    })
+    }
 
     return nodeData
   }
@@ -52,15 +53,15 @@ exports.sourceNodes = async ({ actions, createNodeId }, options) => {
     }
 
     // Create DogImage
-    breedsResponse.image.forEach(imgURL => {
+    breedsResponse.images.forEach(imgURL => {
       const imgObj = createImageObjectFromURL(imgURL)
       const nodeData = turnBreedImageIntoGatsbyNode(imgObj)
       createNode(nodeData)
     })
   }
 
-  // const breedResponse = await processBreedOption(options.breed)
-  // console.log(breedResponse)
+  const breedResponse = await processBreedOption(options.breed)
+  console.log(breedResponse)
   return
 }
 
