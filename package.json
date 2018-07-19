@@ -1,0 +1,32 @@
+{
+  "name": "gatsby-source-dog",
+  "version": "0.0.1",
+  "description": "Gatsby source plugin for pulling data into Gatsby from Dog API (https://dog.ceo/dog-api/)",
+  "author": "Alex Luong",
+  "license": "MIT",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "build": "babel src --out-dir . --ignore **/__tests__",
+    "watch": "babel -w src --out-dir . --ignore **/__tests__"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexluong/gatsby-source-dog"
+  },
+  "bugs": {
+    "url": "https://github.com/alexluong/gatsby-source-dog/issues"
+  }
+}
