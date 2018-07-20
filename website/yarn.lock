@@ -3862,9 +3862,9 @@ gatsby-react-router-scroll@^2.0.0-beta.2:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby-source-dog@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-source-dog/-/gatsby-source-dog-0.0.2.tgz#b7955caf30dccfd84ad23c873ce270d368f3440e"
+gatsby-source-dog@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/gatsby-source-dog/-/gatsby-source-dog-0.0.3.tgz#454edb68280210c8662953b5557fc98566d83a49"
   dependencies:
     axios "^0.18.0"
 
