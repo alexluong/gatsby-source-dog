@@ -5,38 +5,32 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     {
-      resolve: "gatsby-source-pixabay",
+      resolve: "gatsby-source-dog",
       options: {
-        key: "YOUR_PIXABAY_API_KEY",
+        breeds: {
+          list: true,
+          random: {
+            number: 5,
+          },
+        },
+        breed: [
+          "husky",
+          "Border Collie",
+          "retriever-golden",
+          {
+            name: "corgi",
+          },
+          {
+            name: "Great Dane",
+            random: true,
+          },
+          {
+            name: "pug",
+            random: true,
+            number: 3,
+          },
+        ],
       },
     },
-    // {
-    //   resolve: "gatsby-source-dog",
-    //   options: {
-    //     breeds: {
-    //       list: true,
-    //       random: {
-    //         number: 5,
-    //       },
-    //     },
-    //     breed: [
-    //       "husky",
-    //       "Border Collie",
-    //       "retriever-golden",
-    //       {
-    //         name: "corgi",
-    //       },
-    //       {
-    //         name: "Great Dane",
-    //         random: true,
-    //       },
-    //       {
-    //         name: "pug",
-    //         random: true,
-    //         number: 3,
-    //       },
-    //     ],
-    //   },
-    // },
   ],
 }
