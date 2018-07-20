@@ -17,6 +17,7 @@
     "gatsby": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-source-dog": "^0.0.5",
+    "gatsby-source-pixabay": "^1.0.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0"
