@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-dog",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Gatsby source plugin for pulling data into Gatsby from Dog API (https://dog.ceo/dog-api/)",
   "author": "Alex Luong",
   "license": "MIT",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0"
   },
   "keywords": [
