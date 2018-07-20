@@ -22,7 +22,7 @@ In your `gatsby-config.js`, add the plugin and options:
     plugins: [
       ...
       {
-        resolve: 'gatsby-source-hire-with-google',
+        resolve: 'gatsby-source-dog',
         options: {
           breeds: {
             list: true,
