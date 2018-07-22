@@ -1,26 +1,14 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# Gatsby Source Dog website
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+https://gatsby-source-dog.netlify.com
 
-## Install
+---
 
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
-```
+This is the documentation + demo website for gatsby-source-dog plugin.
 
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
+## Run locally:
 
-Then you can run it by:
-```sh
-cd gatsby-example-site
-gatsby develop
-```
-
-## Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+- `git clone https://github.com/alexluong/gatsby-source-dog`
+- `cd gatsby-source-dog/www`
+- `yarn install`
+- `gatsby develop`
