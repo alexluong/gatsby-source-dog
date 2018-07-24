@@ -10,14 +10,20 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write 'src/**/*.js'",
+    "format": "prettier --write 'src/**/*.js' 'gatsby-*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "emotion": "^9.2.6",
+    "emotion-server": "^9.2.6",
     "gatsby": "next",
+    "gatsby-plugin-emotion": "next",
     "gatsby-plugin-react-helmet": "next",
+    "gatsby-source-dog": "^0.0.7",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.6",
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
