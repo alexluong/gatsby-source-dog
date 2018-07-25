@@ -24,10 +24,10 @@ exports.processBreedsOption = async option => {
   }
 
   // Fetch random dog images
-  if (option.random && option.random.number !== 0) {
+  if (option.random && option.number !== 0) {
     fetched = true
 
-    let { number } = option.random
+    let number = option.number
     if (typeof number !== "number" || number < 0) {
       number = 1
     }
@@ -82,7 +82,7 @@ exports.processBreedOption = async option => {
     })
 
     // Resolve all promises and turn into final object
-    return Promise.all(promiseArr).then(results =>
+    images = Promise.all(promiseArr).then(results =>
       results.reduce((a, v) => {
         if (a[v.name]) {
           a[v.name] = [...a[v.name], ...v.images]

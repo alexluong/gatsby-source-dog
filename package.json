@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-dog",
-  "version": "0.0.5",
+  "version": "0.0.91",
   "description": "Gatsby source plugin for pulling data into Gatsby from Dog API (https://dog.ceo/dog-api/)",
   "author": "Alex Luong",
   "license": "MIT",

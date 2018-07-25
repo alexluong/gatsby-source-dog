@@ -26,9 +26,8 @@ In your `gatsby-config.js`, add the plugin and options:
         options: {
           breeds: {
             list: true,
-            random: {
-              number: 5
-            },
+            random: true,
+            number: 5,
           },
           breed: [
             "husky",

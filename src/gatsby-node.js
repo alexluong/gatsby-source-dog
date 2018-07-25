@@ -61,13 +61,16 @@ exports.sourceNodes = async ({ actions, createNodeId }, options) => {
   }
 
   const breedResponse = await processBreedOption(options.breed)
-  Object.entries(breedResponse).forEach(([name, images]) => {
-    images.forEach(imgURL => {
-      const imgObj = createImageObjectFromURL(imgURL)
-      const nodeData = turnBreedImageIntoGatsbyNode(imgObj)
-      createNode(nodeData)
+  if (breedResponse.fetched) {
+    Object.entries(breedResponse.images).forEach(([name, images]) => {
+      console.log({ name, images })
+      images.forEach(imgURL => {
+        const imgObj = createImageObjectFromURL(imgURL)
+        const nodeData = turnBreedImageIntoGatsbyNode(imgObj)
+        createNode(nodeData)
+      })
     })
-  })
+  }
   return
 }
 

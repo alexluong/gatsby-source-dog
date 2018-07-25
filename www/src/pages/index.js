@@ -1,9 +1,15 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import Layout from "components/Layout"
 
-const IndexPage = () => (
+const IndexPage = ({ imgURL }) => (
   <Layout>
-    <h1>Hi people</h1>
+    <p>
+      Gatsby source plugin for pulling data into Gatsby from{" "}
+      <a href="https://dog.ceo/dog-api">Dog API</a>
+    </p>
+
+    <img src={imgURL} alt="Some random beautiful dog" />
 
     <h2>To install the plugin, run:</h2>
     <pre>yarn add gatsby-source-dog</pre>
@@ -16,7 +22,27 @@ const IndexPage = () => (
   </Layout>
 )
 
-export default IndexPage
+export default props => (
+  <StaticQuery
+    query={graphql`
+      {
+        allDogImage {
+          edges {
+            node {
+              url
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      const imgArr = data.allDogImage.edges
+      const randomURL =
+        imgArr[Math.floor(Math.random() * imgArr.length)].node.url
+      return <IndexPage imgURL={randomURL} {...props} />
+    }}
+  />
+)
 
 const config = `
 // gatsby-config.js:
@@ -28,10 +54,9 @@ const config = `
     resolve: "gatsby-source-dog",
     options: {
       breeds: {
-      list: true,
-      random: {
+        list: true,
+        random: true,
         number: 5,
-      },
       },
       breed: [
         "husky",
@@ -49,8 +74,7 @@ const config = `
           random: true,
           number: 3,
         },
-        ],
-      },
+      ],
     },
     ...
   ],
