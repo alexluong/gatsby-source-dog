@@ -1,4 +1,5 @@
-import { GraphQLString } from "gatsby/graphql"
+import { GraphQLBoolean } from "gatsby/graphql"
+// import { fluidNodeType } from "./node-type"
 
 function setFieldsOnGraphQLNodeType({ type }) {
   if (type.name !== "DogImage") {
@@ -6,17 +7,9 @@ function setFieldsOnGraphQLNodeType({ type }) {
   }
 
   return {
-    newField: {
-      type: GraphQLString,
-      args: {
-        myArgument: {
-          type: GraphQLString,
-        },
-      },
-      resolve: (source, fieldArgs) => {
-        return `Id of this node is ${source.id}.
-                Field was called with argument: ${fieldArgs.myArgument}`
-      },
+    hasImageUrl: {
+      type: GraphQLBoolean,
+      resolve: () => true,
     },
   }
 }

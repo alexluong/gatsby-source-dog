@@ -34,7 +34,7 @@ async function processBreedsOption(option) {
 
     try {
       const { status, data: imageData } = await axios.get(
-        `${URL}/breeds/image/random/${number}`
+        `${URL}/breeds/image/random/${number}`,
       )
 
       images = status === 404 ? [] : imageData.message
@@ -47,17 +47,20 @@ async function processBreedsOption(option) {
 }
 
 async function processBreedOption(option) {
-  if (!option) {
-    return { fetched: false }
-  }
-
+  let fetched = false
   let images = {}
+
+  if (!option) {
+    return { fetched, images }
+  }
 
   if (typeof option === "string") {
     // option = name of a breed
+    fetched = true
     const { images: breedImages } = await fetchImageByBreed({ name: option })
     images[option] = breedImages
   } else if (Array.isArray(option)) {
+    fetched = true
     /**
      * Has to do the {...number, ...breed} thing
      * because dog API doesn't allow fetching multiple random images
@@ -74,7 +77,7 @@ async function processBreedOption(option) {
         } else {
           Array.from(Array(breed.number), () => {
             promiseArr.push(
-              fetchImageByBreed({ name: breed.name, random: true })
+              fetchImageByBreed({ name: breed.name, random: true }),
             )
           })
         }
@@ -82,21 +85,20 @@ async function processBreedOption(option) {
     })
 
     // Resolve all promises and turn into final object
-    images = Promise.all(promiseArr).then(results =>
-      results.reduce((a, v) => {
-        if (a[v.name]) {
-          a[v.name] = [...a[v.name], ...v.images]
-        } else {
-          a[v.name] = v.images
-        }
-        return a
-      }, {})
-    )
+    const results = await Promise.all(promiseArr)
+    images = results.reduce((a, v) => {
+      if (a[v.name]) {
+        a[v.name] = [...a[v.name], ...v.images]
+      } else {
+        a[v.name] = v.images
+      }
+      return a
+    }, {})
   } else {
     throw new Error("option.breed must be a string or an array")
   }
 
-  return { images }
+  return { fetched, images }
 }
 
 function fetchImageByBreed({ name, random = false }) {

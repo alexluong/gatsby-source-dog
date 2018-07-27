@@ -61,6 +61,7 @@ async function sourceNodes({ actions, createNodeId }, options) {
   }
 
   const breedResponse = await processBreedOption(options.breed)
+  console.log(breedResponse)
   if (breedResponse.fetched) {
     Object.entries(breedResponse.images).forEach(([name, images]) => {
       console.log({ name, images })
@@ -82,7 +83,7 @@ function createImageObjectFromURL(url) {
   const breed = url
     .slice(
       url.indexOf(breedRecognizer) + breedRecognizer.length,
-      lastIndexOfSlash
+      lastIndexOfSlash,
     )
     .split("-")
     .reverse()

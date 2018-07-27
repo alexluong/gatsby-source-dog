@@ -1,3 +1,4 @@
 src
 www
-.babelrc
+.*rc
+netlify.toml
