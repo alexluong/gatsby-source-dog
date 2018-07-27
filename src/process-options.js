@@ -1,8 +1,8 @@
-const axios = require("axios")
+import axios from "axios"
 
 const URL = "https://dog.ceo/api"
 
-exports.processBreedsOption = async option => {
+async function processBreedsOption(option) {
   if (!option) {
     return { fetched: false }
   }
@@ -46,7 +46,7 @@ exports.processBreedsOption = async option => {
   return { fetched, list, images }
 }
 
-exports.processBreedOption = async option => {
+async function processBreedOption(option) {
   if (!option) {
     return { fetched: false }
   }
@@ -138,3 +138,5 @@ function fetchImageByBreed({ name, random = false }) {
     resolve(returnObj)
   })
 }
+
+export { processBreedsOption, processBreedOption }
