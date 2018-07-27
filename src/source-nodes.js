@@ -19,6 +19,7 @@ async function sourceNodes({ actions, createNodeId }, options) {
       children: [],
       internal: {
         type: "DogImage",
+        mediaType: "image/url",
         content: nodeContent,
         contentDigest: nodeContentDigest,
       },
@@ -61,10 +62,8 @@ async function sourceNodes({ actions, createNodeId }, options) {
   }
 
   const breedResponse = await processBreedOption(options.breed)
-  console.log(breedResponse)
   if (breedResponse.fetched) {
     Object.entries(breedResponse.images).forEach(([name, images]) => {
-      console.log({ name, images })
       images.forEach(imgURL => {
         const imgObj = createImageObjectFromURL(imgURL)
         const nodeData = turnBreedImageIntoGatsbyNode(imgObj)
