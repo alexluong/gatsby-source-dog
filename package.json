@@ -8,10 +8,12 @@
   "scripts": {
     "build": "babel src --out-dir dist --ignore **/__tests__",
     "watch": "babel --watch src --out-dir dist --ignore **/__tests__",
+    "format": "prettier --write src/**/*.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "gatsby-source-filesystem": "^1.5.39"
   },
   "peerDependencies": {
     "gatsby": "^2.0.0-beta.59"
@@ -20,7 +22,8 @@
     "@babel/cli": "^7.0.0-beta.54",
     "@babel/core": "^7.0.0-beta.54",
     "@babel/node": "^7.0.0-beta.54",
-    "@babel/preset-env": "^7.0.0-beta.54"
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "prettier": "^1.13.7"
   },
   "keywords": [
     "gatsby",

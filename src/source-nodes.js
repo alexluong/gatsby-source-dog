@@ -19,7 +19,6 @@ async function sourceNodes({ actions, createNodeId }, options) {
       children: [],
       internal: {
         type: "DogImage",
-        mediaType: "image/url",
         content: nodeContent,
         contentDigest: nodeContentDigest,
       },
