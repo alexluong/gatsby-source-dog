@@ -2,3 +2,5 @@ src
 www
 .*rc
 netlify.toml
+yarn.lock
+package-lock.json

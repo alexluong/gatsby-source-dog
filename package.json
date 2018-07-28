@@ -1,15 +1,16 @@
 {
   "name": "gatsby-source-dog",
-  "version": "0.0.12",
+  "version": "0.0.15",
   "description": "Gatsby source plugin for pulling data into Gatsby from Dog API (https://dog.ceo/dog-api/)",
   "author": "Alex Luong",
   "license": "MIT",
   "main": "gatsby-node.js",
   "scripts": {
-    "build": "babel src --out-dir dist --ignore **/__tests__",
+    "build": "yarn clean && babel src --out-dir dist --ignore **/__tests__",
     "watch": "babel --watch src --out-dir dist --ignore **/__tests__",
     "format": "prettier --write src/**/*.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
