@@ -8,13 +8,14 @@ const propTypes = {
   open: PropTypes.bool.isRequired,
 }
 
-const Sidebar = ({ open, ...props }) => (
-  <Spring native to={{ width: open ? 20 : 0, opacity: open ? 1 : 0 }}>
+const Sidebar = ({ open }) => (
+  <Spring native to={{ width: open ? 100 : 0, opacity: open ? 1 : 0 }}>
     {({ width, opacity }) => (
       <animated.div
+        id="sidebar"
         className={sidebarCss}
         style={{
-          width: width.interpolate(w => `${w}vw`),
+          width: width.interpolate(w => `${w}%`),
           opacity: opacity.interpolate(d => `${d}`),
         }}
       >
@@ -29,7 +30,14 @@ Sidebar.propTypes = propTypes
 export default Sidebar
 
 const sidebarCss = css`
-  width: 20vw;
-  background: #fff;
-  border-right: 1px solid #e8e8e8;
+  max-width: 300px;
+  min-width: 300px;
+  /* height: 600px; */
+  position: relative;
+  transition: all 0.2s ease;
+
+  @media screen and (max-width: 1000px) {
+    max-width: 250px;
+    min-width: 250px;
+  }
 `

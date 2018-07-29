@@ -28,8 +28,9 @@ const withRandomImage = Component => {
       render={data => {
         const imgArr = data.allDogImage.edges
         const image =
-          imgArr[Math.floor(Math.random() * imgArr.length)].node.image
-            .childImageSharp
+          // imgArr[Math.floor(Math.random() * imgArr.length)].node.image
+          //   .childImageSharp
+          imgArr[0].node.image.childImageSharp
         return <Component image={image} {...props} />
       }}
     />

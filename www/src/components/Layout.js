@@ -6,6 +6,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./Header"
 import Sidebar from "./Sidebar"
+import Toggle from "./Toggle"
 import resetCss from "config/resetCss"
 
 resetCss()
@@ -19,11 +20,19 @@ const Layout = ({ children, data }) => (
         { name: "keywords", content: "sample, something" },
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div className={containerCss}>
-      <Sidebar open={true} />
-      <main className={mainCss}>{children}</main>
-    </div>
+    <Toggle on>
+      {({ on }) => (
+        <>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <div className={containerCss}>
+            <main className={mainCss}>
+              <div className={contentCss}>{children}</div>
+              <Sidebar open={on} />
+            </main>
+          </div>
+        </>
+      )}
+    </Toggle>
   </>
 )
 
@@ -50,8 +59,19 @@ const containerCss = css`
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
 `
 
 const mainCss = css`
-  padding: 1.5rem 4rem;
+  max-width: 1400px;
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-around;
+`
+
+const contentCss = css`
+  /* flex-shrink: 1; */
+  max-width: 600px;
+  /* margin-left: 2rem; */
 `
