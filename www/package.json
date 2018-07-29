@@ -10,6 +10,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "start": "rm -rf .cache && gatsby develop",
     "format": "prettier --write 'src/**/*.js' 'gatsby-*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,17 +18,23 @@
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
     "gatsby": "next",
+    "gatsby-image": "next",
     "gatsby-link": "next",
     "gatsby-plugin-emotion": "next",
     "gatsby-plugin-react-helmet": "next",
-    "gatsby-plugin-sharp": "^2.0.0-beta.7",
+    "gatsby-plugin-sharp": "next",
+    "gatsby-remark-prismjs": "next",
+    "gatsby-remark-smartypants": "next",
     "gatsby-source-dog": "^0.0.15",
-    "gatsby-transformer-sharp": "^2.1.1-beta.6",
+    "gatsby-transformer-remark": "next",
+    "gatsby-transformer-sharp": "next",
+    "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-spring": "^5.4.4"
   },
   "devDependencies": {
     "prettier": "^1.12.0"

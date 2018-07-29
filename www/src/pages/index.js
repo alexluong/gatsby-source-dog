@@ -1,16 +1,21 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
 import Link from "gatsby-link"
 import Layout from "components/Layout"
+import withRandomImage from "hoc/withRandomImage"
 
-const IndexPage = ({ imgURL }) => (
+const IndexPage = ({ image }) => (
   <Layout>
     <p>
       Gatsby source plugin for pulling data into Gatsby from{" "}
       <a href="https://dog.ceo/dog-api">Dog API</a>
     </p>
 
-    <img src={imgURL} alt="Some random beautiful dog" />
+    <Image
+      fluid={image.fluid}
+      alt="Some random beautiful dog"
+      style={imageStyle(image.original.width, image.original.height)}
+    />
 
     <h2>Documentation</h2>
     <p>
@@ -46,28 +51,16 @@ const IndexPage = ({ imgURL }) => (
   </Layout>
 )
 
-// TODO: Make this a HOC
-export default props => (
-  <StaticQuery
-    query={graphql`
-      {
-        allDogImage {
-          edges {
-            node {
-              url
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      const imgArr = data.allDogImage.edges
-      const randomURL =
-        imgArr[Math.floor(Math.random() * imgArr.length)].node.url
-      return <IndexPage imgURL={randomURL} {...props} />
-    }}
-  />
-)
+export default withRandomImage(IndexPage)
+
+function imageStyle(width, height) {
+  return {
+    width: `${width}px`,
+    height: `${height}px`,
+    marginBottom: "2rem",
+    maxWidth: "100%",
+  }
+}
 
 const config = `
 // gatsby-config.js:

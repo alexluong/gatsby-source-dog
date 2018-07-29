@@ -4,7 +4,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-react-helmet",
-    "gatsby-sharp-plugin",
+    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-emotion",
     {
@@ -14,6 +14,7 @@ module.exports = {
           random: true,
           number: 5,
         },
+        breed: ["Border Collie"],
       },
     },
   ],

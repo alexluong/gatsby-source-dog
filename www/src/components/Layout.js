@@ -1,14 +1,37 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
+import { css } from "react-emotion"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./Header"
+import Sidebar from "./Sidebar"
 import resetCss from "config/resetCss"
 
 resetCss()
 
 const Layout = ({ children, data }) => (
+  <>
+    <Helmet
+      title={data.site.siteMetadata.title}
+      meta={[
+        { name: "description", content: "Sample" },
+        { name: "keywords", content: "sample, something" },
+      ]}
+    />
+    <Header siteTitle={data.site.siteMetadata.title} />
+    <div className={containerCss}>
+      <Sidebar open={true} />
+      <main className={mainCss}>{children}</main>
+    </div>
+  </>
+)
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default props => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -19,33 +42,16 @@ const Layout = ({ children, data }) => (
         }
       }
     `}
-    render={data => (
-      <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: "description", content: "Sample" },
-            { name: "keywords", content: "sample, something" },
-          ]}
-        />
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: "0 auto",
-            maxWidth: 960,
-            padding: "0px 1.0875rem 1.45rem",
-            paddingTop: 0,
-          }}
-        >
-          {children}
-        </div>
-      </>
-    )}
+    render={data => <Layout data={data} {...props} />}
   />
 )
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+const containerCss = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+`
 
-export default Layout
+const mainCss = css`
+  padding: 1.5rem 4rem;
+`
