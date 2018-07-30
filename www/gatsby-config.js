@@ -8,6 +8,30 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-emotion",
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "image",
+        path: `${__dirname}/src/assets`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "markdown-pages",
+        path: `${__dirname}/pages`,
+      },
+    },
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          "gatsby-remark-prismjs",
+          "gatsby-remark-smartypants",
+          "gatsby-plugin-catch-links",
+        ],
+      },
+    },
+    {
       resolve: "gatsby-source-dog",
       options: {
         breeds: {

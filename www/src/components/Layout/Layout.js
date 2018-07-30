@@ -6,8 +6,10 @@ import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./Header"
 import Sidebar from "./Sidebar"
-import Toggle from "./Toggle"
+import Toggle from "components/Toggle"
 import resetCss from "config/resetCss"
+
+import "prismjs/themes/prism.css"
 
 resetCss()
 
