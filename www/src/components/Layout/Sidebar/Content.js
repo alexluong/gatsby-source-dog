@@ -3,10 +3,13 @@ import styled, { css } from "react-emotion"
 import GatsbyLink from "components/GatsbyLink"
 
 class SidebarContent extends React.Component {
-  state = { update: true }
+  state = {
+    rect: {},
+  }
 
   componentDidMount() {
     window.addEventListener("resize", this.updatePosition)
+    this.updatePosition()
   }
 
   componentWillUnmount() {
@@ -14,17 +17,16 @@ class SidebarContent extends React.Component {
   }
 
   updatePosition = () => {
-    this.setState({ update: true })
+    const sidebar = document.getElementById("sidebar")
+    const sidebarRect = sidebar ? sidebar.getBoundingClientRect() : {}
+    this.setState({ rect: sidebarRect })
   }
 
   render() {
-    const sidebar = document.getElementById("sidebar")
-    const sidebarRect = sidebar ? sidebar.getBoundingClientRect() : {}
-
-    console.log("update")
+    const { rect } = this.state
 
     return (
-      <Container dimension={sidebarRect}>
+      <Container dimension={rect}>
         <h2 className={titleCss}>Docs</h2>
         <GatsbyLink to="/">API explanation</GatsbyLink>
         <br />
