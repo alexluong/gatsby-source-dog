@@ -28,6 +28,7 @@ module.exports = {
           "gatsby-remark-prismjs",
           "gatsby-remark-smartypants",
           "gatsby-plugin-catch-links",
+          "gatsby-remark-images",
         ],
       },
     },
