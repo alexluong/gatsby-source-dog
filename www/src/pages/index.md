@@ -1,5 +1,6 @@
 ---
 name: "index"
+path: ""
 ---
 
 ## Documentation
