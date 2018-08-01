@@ -1,6 +1,23 @@
 import { injectGlobal } from "emotion"
 
 function resetCss() {
+  gatsbyReset()
+
+  injectGlobal`
+    pre {
+      margin-bottom: 1.6rem !important;
+    }
+
+    a {
+      color: blue;
+      &:visited {
+        color: blue;
+      }
+    }
+  `
+}
+
+function gatsbyReset() {
   injectGlobal`
     html {
       font-family: sans-serif;

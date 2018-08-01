@@ -17,7 +17,9 @@ const GatsbyLink = ({
       <Link
         to={to}
         style={{ ...style, color }}
-        className={`${className} ${linkCss}`}
+        className={css`
+          ${linkCss} ${className};
+        `}
         {...props}
       >
         {children}

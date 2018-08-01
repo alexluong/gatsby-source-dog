@@ -67,13 +67,12 @@ const containerCss = css`
 const mainCss = css`
   max-width: 1400px;
   width: 100%;
-  padding: 1.5rem 0;
+  padding: 1.5rem 5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `
 
 const contentCss = css`
-  /* flex-shrink: 1; */
   max-width: 600px;
-  /* margin-left: 2rem; */
+  width: 100%;
 `

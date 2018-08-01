@@ -27,12 +27,18 @@ class SidebarContent extends React.Component {
 
     return (
       <Container dimension={rect}>
-        <h2 className={titleCss}>Docs</h2>
-        <GatsbyLink to="/">API explanation</GatsbyLink>
+        <h2 className={titleCss}>
+          <GatsbyLink to="/docs">Docs</GatsbyLink>
+        </h2>
+        <GatsbyLink to="/docs/api">API explanation</GatsbyLink>
         <br />
-        <GatsbyLink to="/">Other plugins integration</GatsbyLink>
+        <GatsbyLink to="/docs/other-plugins">
+          Other plugins integration
+        </GatsbyLink>
         <hr />
-        <h2 className={titleCss}>Examples</h2>
+        <h2 className={titleCss}>
+          <GatsbyLink to="/examples">Examples</GatsbyLink>
+        </h2>
         <GatsbyLink to="/">All images</GatsbyLink>
         <br />
         <GatsbyLink to="/">One random image</GatsbyLink>
@@ -59,4 +65,18 @@ const Container = styled.div`
 
 const titleCss = css`
   color: white;
+  margin-bottom: 0.5rem;
+
+  a {
+    margin: 0;
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      background-color: transparent;
+      transform: rotate(-7deg) scale(1.2);
+      font-weight: 400;
+      font-style: italic;
+      text-decoration: underline;
+    }
+  }
 `

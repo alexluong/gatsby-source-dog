@@ -1,14 +1,10 @@
 ---
-page: "index"
+name: "index"
 ---
-
-Gatsby source plugin for pulling data into Gatsby from [Dog API](https://dog.ceo/dog-api)
-
-![Awesome Doggo in Gatsby shirt](../src/assets/dog.jpeg "Awesome Doggo in Gatsby shirt")
 
 ## Documentation
 
-For a detailed explanation of the API, please read through the [documentation page](/doc)
+For a detailed explanation of the API, please read through the [documentation page](/docs/api)
 
 ## Quick Start
 
@@ -24,7 +20,7 @@ You are probably using these plugins already, but just in case you didn't:
 $ yarn add gatsby-plugin-sharp gatsby-transformer-sharp
 ```
 
-If you are wondering, I have a post explaining why we want to use these 2 extra plugins: [Other plugins integration](/other-plugins-integration)
+If you are wondering, I have a post explaining why we want to use these 2 extra plugins: [Other plugins integration](/docs/other-plugins)
 
 ### Config
 
