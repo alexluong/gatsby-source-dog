@@ -26,12 +26,10 @@ const Layout = ({ children, data }) => (
       {({ on }) => (
         <>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <div className={containerCss}>
-            <main className={mainCss}>
-              <div className={contentCss}>{children}</div>
-              <Sidebar open={on} />
-            </main>
-          </div>
+          <main className={mainCss}>
+            <div className={contentCss}>{children}</div>
+            <Sidebar open={on} />
+          </main>
         </>
       )}
     </Toggle>
@@ -57,16 +55,11 @@ export default props => (
   />
 )
 
-const containerCss = css`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-`
-
 const mainCss = css`
   max-width: 1400px;
   width: 100%;
+  height: 100%;
+  margin: 0 auto;
   padding: 1.5rem 5rem;
   display: flex;
   justify-content: space-between;

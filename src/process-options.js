@@ -2,6 +2,7 @@ import axios from "axios"
 
 const URL = "https://dog.ceo/api"
 
+// TODO: New API for Dog API
 async function processBreedsOption(option) {
   if (!option) {
     return { fetched: false }
@@ -94,8 +95,14 @@ async function processBreedOption(option) {
       }
       return a
     }, {})
+  } else if (typeof option === "object") {
+    if (option.name) {
+      fetched = true
+
+      // TODO: Fetch dog image
+    }
   } else {
-    throw new Error("option.breed must be a string or an array")
+    throw new Error("option.breed must be a string, an object, or an array")
   }
 
   return { fetched, images }

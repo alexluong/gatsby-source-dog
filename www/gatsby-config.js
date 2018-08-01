@@ -36,6 +36,7 @@ module.exports = {
       resolve: "gatsby-source-dog",
       options: {
         breeds: {
+          list: true,
           random: true,
           number: 5,
         },

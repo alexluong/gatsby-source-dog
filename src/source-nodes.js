@@ -36,7 +36,7 @@ async function sourceNodes({ actions, createNodeId }, options) {
     if (breedsResponse.list) {
       const nodeContent = JSON.stringify(breedsResponse.list)
       const nodeData = {
-        list: breedsResponse.list,
+        list: breedsResponse.list, // TODO: Change this to an array
         id: createNodeId("dog-breed-list-1"),
         parent: null,
         children: [],

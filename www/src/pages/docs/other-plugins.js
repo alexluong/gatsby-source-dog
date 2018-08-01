@@ -3,7 +3,7 @@ import Layout from "components/Layout"
 
 const OtherPlugins = () => (
   <Layout>
-    <p>OtherPlugins</p>
+    <h1>Other Plugins Integration</h1>
   </Layout>
 )
 
