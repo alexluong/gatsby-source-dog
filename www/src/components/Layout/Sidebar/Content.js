@@ -35,7 +35,9 @@ class SidebarContent extends React.Component {
         <GatsbyLink to="/docs/other-plugins">
           Other plugins integration
         </GatsbyLink>
+
         <hr />
+
         <h2 className={titleCss}>
           <GatsbyLink to="/examples">Examples</GatsbyLink>
         </h2>
@@ -61,6 +63,7 @@ const Container = styled.div`
   /* height: ${({ dimension }) => `${dimension.height}px`}; */
   background-color: rebeccapurple;
   padding: 2rem;
+  color: white;
 `
 
 const titleCss = css`

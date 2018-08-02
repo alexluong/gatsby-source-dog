@@ -2,17 +2,24 @@ import React from "react"
 import PropTypes from "prop-types"
 import { css } from "react-emotion"
 import GatsbyLink from "components/GatsbyLink"
+import githubMark from "assets/github.png"
 
 const Header = ({ siteTitle }) => (
-  <div className={containerCss}>
-    <div className={headerCss}>
+  <header className={headerCss}>
+    <div className={containerCss}>
       <h1 className={titleCss}>
         <GatsbyLink to="/" className={linkCss}>
           {siteTitle}
         </GatsbyLink>
       </h1>
+
+      <div className={rightCss}>
+        <a href="https://github.com/alexluong/gatsby-source-dog">
+          <img alt="Github mark" src={githubMark} />
+        </a>
+      </div>
     </div>
-  </div>
+  </header>
 )
 
 Header.propTypes = {
@@ -21,16 +28,31 @@ Header.propTypes = {
 
 export default Header
 
-const containerCss = css`
+const headerCss = css`
   background: rebeccapurple;
-  padding: 1.45rem 0;
+  height: 100px;
 `
 
-const headerCss = css`
+const containerCss = css`
   max-width: 1400px;
   padding: 0 5rem;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const rightCss = css`
+  display: flex;
+  align-items: center;
+
+  a {
+    img {
+      margin: 0;
+    }
+  }
 `
 
 const titleCss = css`

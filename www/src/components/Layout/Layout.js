@@ -5,6 +5,7 @@ import { css } from "react-emotion"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./Header"
+import Footer from "./Footer"
 import Sidebar from "./Sidebar"
 import Toggle from "components/Toggle"
 import resetCss from "config/resetCss"
@@ -30,6 +31,7 @@ const Layout = ({ children, data }) => (
             <div className={contentCss}>{children}</div>
             <Sidebar open={on} />
           </main>
+          <Footer />
         </>
       )}
     </Toggle>
@@ -57,6 +59,7 @@ export default props => (
 
 const mainCss = css`
   max-width: 1400px;
+  min-height: calc(100vh - 100px);
   width: 100%;
   height: 100%;
   margin: 0 auto;
