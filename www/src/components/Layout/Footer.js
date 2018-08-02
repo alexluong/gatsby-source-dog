@@ -5,8 +5,9 @@ const Footer = () => (
   <footer className={footerCss}>
     <div>
       <p>
-        Special thanks to <a href="https://twitter.com/firstlast">First Last</a>{" "}
-        for an awesome photo of Birch the dog
+        Special thanks to{" "}
+        <a href="https://twitter.com/ryanwiemer">Ryan Wiemer</a> for an awesome
+        photo of Birch the dog
       </p>
 
       <p>
