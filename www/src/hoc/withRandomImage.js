@@ -9,6 +9,7 @@ const withRandomImage = Component => {
           allDogImage {
             edges {
               node {
+                url
                 image {
                   childImageSharp {
                     original {
@@ -28,9 +29,15 @@ const withRandomImage = Component => {
       render={data => {
         const imgArr = data.allDogImage.edges
         const randomNumber = Math.floor(Math.random() * imgArr.length)
-        const image = imgArr[randomNumber].node.image.childImageSharp
+        const image = imgArr[randomNumber].node
 
-        return <Component image={image} {...props} />
+        return (
+          <Component
+            image={image.image.childImageSharp}
+            url={image.url}
+            {...props}
+          />
+        )
       }}
     />
   )

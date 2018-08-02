@@ -14,10 +14,10 @@ yarn add gatsby-source-dog
 You are probably using these plugins already, but just in case you didn't:
 
 ```
-yarn add gatsby-plugin-sharp gatsby-transformer-sharp
+yarn add gatsby-image gatsby-plugin-sharp gatsby-transformer-sharp
 ```
 
-If you are wondering, I have a post explaining why we want to use these 2 extra plugins: [Other plugins integration](/docs/other-plugins)
+If you are wondering, I have a post explaining why we want to use these 3 extra plugins: [Other plugins integration](/docs/other-plugins)
 
 ### Config
 
